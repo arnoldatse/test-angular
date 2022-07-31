@@ -1,0 +1,26 @@
+<div>
+  <div class="center-form-card">
+    <h2>Inscription</h2>
+    <form [formGroup]="userForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email"/>
+        <label *ngIf="emailError" class="field-error-label" for="email">{{ emailError }}</label>
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" formControlName="password"/>
+        <label *ngIf="passwordError" class="field-error-label" for="email">{{ passwordError }}</label>
+      </div>
+      <div class="form-group">
+        <label for="password-confirmation">Confirmation de mot de passe</label>
+        <input id="password-confirmation" type="password" formControlName="passwordConfirmation"/>
+        <label *ngIf="passwordConfirmationError" class="field-error-label" for="email">{{ passwordConfirmationError }}</label>
+      </div>
+      <div class="center-form-card-actions">
+        <button (click)="RegisterAction()" type="submit">Inscription</button>
+      </div>
+    </form>
+    <a class="simple-button-navigation" routerLink="/auth">Connexion</a>
+  </div>
+</div>
