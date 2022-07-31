@@ -1,9 +1,9 @@
-export default class UserListDto {
-  id: number;
-  email: string;
-  lastName: string;
-  firstName: string;
-  avatar: string;
+export default class UserDto {
+  public readonly id: number;
+  public readonly email: string;
+  public readonly lastName: string;
+  public readonly firstName: string;
+  public readonly avatar: string;
 
   constructor(
     user:{
@@ -11,8 +11,7 @@ export default class UserListDto {
       email: string,
       lastName: string,
       firstName: string,
-      avatar: string,
-      password: string
+      avatar: string
     }
   ){
       this.id = user.id;

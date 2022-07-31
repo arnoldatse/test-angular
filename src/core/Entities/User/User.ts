@@ -1,19 +1,19 @@
 export default class User {
-  private _id: number;
+  private _id?: number;
   private _email: string;
   private _lastName: string;
   private _firstName: string;
   private _avatar: string;
-  private _password: string;
+  private _password?: string;
 
   constructor(
     user:{
-      id: number,
+      id?: number,
       email: string,
       lastName: string,
       firstName: string,
       avatar: string,
-      password: string
+      password?: string
     }
   ){
       this._id = user.id;

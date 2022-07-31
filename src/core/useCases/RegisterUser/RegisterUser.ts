@@ -1,15 +1,15 @@
-import UserRegisterDto from "src/core/Entities/User/UserRegisterDto"
+import UserLoginRegisterDto from "src/core/Entities/User/UserLoginRegisterDto"
 import RegisterUserRepository from "./RegisterUserRepository"
 
 export default class RegisterUser{
-  private _RegisterUserRepository:RegisterUserRepository;
-  constructor(RegisterUserRepository: RegisterUserRepository){
-    this._RegisterUserRepository = RegisterUserRepository
+  private _registerUserRepository:RegisterUserRepository;
+  constructor(registerUserRepository: RegisterUserRepository){
+    this._registerUserRepository = registerUserRepository
   }
 
   async Register(email:string, password:string){
-    const user = new UserRegisterDto({email, password})
+    const user = new UserLoginRegisterDto({email, password})
 
-    await this._RegisterUserRepository.RestRegisterUser(user)
+    return await this._registerUserRepository.RestRegisterUser(user).then(response=>response).catch(error => error)
   }
 }

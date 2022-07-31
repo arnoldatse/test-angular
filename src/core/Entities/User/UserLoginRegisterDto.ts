@@ -1,6 +1,6 @@
-export default class UserRegisterDto {
-  public email: string;
-  public password: string | undefined;
+export default class UserLoginRegisterDto {
+  public readonly email: string;
+  public readonly password: string | undefined;
 
   constructor(
     user:{

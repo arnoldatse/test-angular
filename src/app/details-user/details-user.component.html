@@ -1,1 +1,12 @@
-<p>details-user works!</p>
+<div class="container">
+  <div class="header">
+    <a (click)="NavigateToUsersList()">Retour</a>
+  </div>
+
+  <div class="content">
+    <img src="{{ user.avatar }}" alt="User avatar">
+    <h5>{{ user.lastName }} {{ user.firstName }}</h5>
+    <p>{{ user.email }}</p>
+  </div>
+
+</div>

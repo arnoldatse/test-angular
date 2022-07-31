@@ -18,7 +18,7 @@ export class FormValidation{
    * @param fields
    * @returns
    */
-  validations(fields: FieldValidation[]): {valid:boolean, errors:ValidationErrors}{
+  Validations(fields: FieldValidation[]): {valid:boolean, errors:ValidationErrors}{
     var valid = true;
     var errors: ValidationErrors = [];
 
@@ -81,7 +81,7 @@ export class FormValidation{
    * @param fieldName
    * @returns
    */
-  getFieldError(fieldName: string): FieldError{
+  GetFieldError(fieldName: string): FieldError{
     const error = this.errors.find(error => error.name == fieldName)
     return error ? error.message : false
   }
