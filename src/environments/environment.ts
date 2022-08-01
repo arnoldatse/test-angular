@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: "https://reqres.in/api"
+  apiBaseUrl: "https://reqres.in/api",
+  CHROME_BIN: "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 };
 
 /*

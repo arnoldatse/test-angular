@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     const validationFields: FieldValidations = [
       {name: "email", value: this.userForm.value.email!, validators: ["required", "email"]},
       {name: "password", value: this.userForm.value.password!, validators: ["required", "strongPassword"]},
-      {name: "passwordConfirmation", value: this.userForm.value.passwordConfirmation!, validators: [{confirm: "password"}]},
+      {name: "passwordConfirmation", value: this.userForm.value.passwordConfirmation!, validators: ["required", {confirm: "password"}]},
     ]
     const validations = formValidation.Validations(validationFields)
     this.emailError = formValidation.GetFieldError('email')

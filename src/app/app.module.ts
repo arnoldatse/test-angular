@@ -9,7 +9,6 @@ import { RegisterComponent } from './register/register.component';
 import { AuthComponent } from './auth/auth.component';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { DetailsUserComponent } from './details-user/details-user.component';
-import { StoreModule } from '@ngrx/store';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SpaceComponent } from './space/space.component';
 
