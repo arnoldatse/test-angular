@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { AuthReducer } from './store/reducers/auth.reducer';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
@@ -40,10 +38,7 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
-    ReactiveFormsModule,
-    StoreModule.forRoot({
-      auth: AuthReducer
-    })
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

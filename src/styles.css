@@ -19,9 +19,9 @@ body{
   align-items: center;
   justify-content: center;
   width: 400px;
-  box-shadow: -1px 2px 23px 1px rgba(0,0,0,0.75);
-  -webkit-box-shadow: -1px 2px 23px 1px rgba(0,0,0,0.75);
-  -moz-box-shadow: -1px 2px 23px 1px rgba(0,0,0,0.75);
+  box-shadow: 0px -1px 6px 3px rgba(0,0,0,0.26);
+  -webkit-box-shadow: 0px -1px 6px 3px rgba(0,0,0,0.26);
+  -moz-box-shadow: 0px -1px 6px 3px rgba(0,0,0,0.26);
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
@@ -59,12 +59,14 @@ input:focus{
   border-color: #d16c76;
 }
 
-.form-group label{
-  font-weight: 600;
+.form-group .label{
+  font-weight: bold;
 }
 
 .field-error-label{
-  color: #ce0707
+  color: #ce0707;
+  font-size: 0.8em;
+  font-weight: lighter;
 }
 
 .form-error{
@@ -119,6 +121,6 @@ h1, h2, h3, h4, h5, h6{
 
 @media only screen and (max-width: 600px) {
   .container-form-center .center-form-card{
-    width: 95%;
+    width: 80%;
   }
 }

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthAction } from '../store/actions/auth.action';
-import { selectAuth } from './../store/selectors/auth.selector';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { initialState } from '../store/reducers/auth.reducer';
 import { Router } from '@angular/router';
+import { AuthService } from './../services/auth.service';
 
 @Component({
   selector: 'app-space',
@@ -13,17 +10,16 @@ import { Router } from '@angular/router';
 })
 export class SpaceComponent implements OnInit {
 
-  auth: Observable<string|false>;
-
-  constructor(private store: Store, private router: Router) {
-    this.auth = store.select(selectAuth)
-  }
+  constructor(private AuthService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    if(!this.AuthService.Check()){
+      this.router.navigate(['auth'], {replaceUrl: true})
+    }
   }
 
   Logout(){
-    this.store.dispatch(AuthAction(initialState))
+    this.AuthService.Logout()
     this.router.navigate(['auth'], {replaceUrl: true})
   }
 

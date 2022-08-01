@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormValidation, FieldValidations, FieldError } from 'src/core/useCases/FormValidation/FormValidation';
-import { selectAuth } from './../store/selectors/auth.selector';
-import { AuthAction } from '../store/actions/auth.action';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { AuthService } from './../services/auth.service';
 import LoginUserAdapter from 'src/datas/LoginUserAdapter';
 import LoginUser from 'src/core/useCases/LoginUser/LoginUser';
 
@@ -16,8 +13,6 @@ import LoginUser from 'src/core/useCases/LoginUser/LoginUser';
 })
 export class AuthComponent implements OnInit {
 
-  auth: Observable<string|false>;
-
   userForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
@@ -27,14 +22,28 @@ export class AuthComponent implements OnInit {
   emailError: FieldError = false;
   passwordError: FieldError = false;
 
-  constructor(private store: Store, private router: Router) {
-    this.auth = store.select(selectAuth)
-  }
+  constructor(private AuthService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    if(this.AuthService.Check()){
+      this.router.navigate(['space/users'], {replaceUrl: true})
+    }
+  }
+
+  OnChangeField(field: 'email'|'password'){
+    switch(field){
+      case 'email':
+        this.emailError = false;
+        break;
+      case 'password':
+        this.passwordError = false;
+        break;
+    }
   }
 
   async LoginAction(){
+    this.formError = false
+
     const formValidation = new FormValidation()
     const validationFields: FieldValidations = [
       {name: "email", value: this.userForm.value.email!, validators: ["required", "email"]},
@@ -50,7 +59,7 @@ export class AuthComponent implements OnInit {
 
       await registerUser.Login(this.userForm.value.email!, this.userForm.value.password!)
       .then(response=>{
-        this.store.dispatch(AuthAction({token: response.token}))
+        this.AuthService.Authenticate(response.token)
         this.router.navigate(['space/users'], {replaceUrl: true})
       })
       .catch(error=>{

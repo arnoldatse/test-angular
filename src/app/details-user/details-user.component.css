@@ -1,0 +1,33 @@
+.page-container{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 95%;
+}
+
+.content{
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  margin: 20px 20px;
+  box-shadow: 0px -1px 6px 3px rgba(0,0,0,0.26);
+  -webkit-box-shadow: 0px -1px 6px 3px rgba(0,0,0,0.26);
+  -moz-box-shadow: 0px -1px 6px 3px rgba(0,0,0,0.26);
+  border-radius: 8px;
+}
+
+#user-id{
+  margin-top: 10px;
+  color: #b3b3b3;
+}
+
+.content img{
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
+  border-radius: 100%;
+}

@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { selectAuth } from './../store/selectors/auth.selector';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { FormValidation, FieldValidations, FieldError } from 'src/core/useCases/FormValidation/FormValidation';
+import { AuthService } from './../services/auth.service';
 import RegisterUser from 'src/core/useCases/RegisterUser/RegisterUser';
 import RegisterUserAdapter from 'src/datas/RegisterUserAdapter';
-import { AuthAction } from '../store/actions/auth.action';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -15,8 +12,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  auth: Observable<string|false>;
 
   userForm = new FormGroup({
     email: new FormControl(''),
@@ -29,11 +24,12 @@ export class RegisterComponent implements OnInit {
   passwordError: FieldError = false;
   passwordConfirmationError: FieldError = false;
 
-  constructor(private store: Store, private router: Router) {
-    this.auth = store.select(selectAuth)
-  }
+  constructor(private AuthService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    if(this.AuthService.Check()){
+      this.router.navigate(['space/users'], {replaceUrl: true})
+    }
   }
 
   async RegisterAction(){
@@ -47,7 +43,7 @@ export class RegisterComponent implements OnInit {
     this.emailError = formValidation.GetFieldError('email')
     this.passwordError = formValidation.GetFieldError('password')
     this.passwordConfirmationError = formValidation.GetFieldError('passwordConfirmation')
-    console.log(validations.valid)
+
     if(validations.valid){
       const registerUserAdapter = new RegisterUserAdapter();
 
@@ -55,7 +51,7 @@ export class RegisterComponent implements OnInit {
 
       await registerUser.Register(this.userForm.value.email!, this.userForm.value.password!)
       .then(response=>{
-        this.store.dispatch(AuthAction({token: response.token}))
+        this.AuthService.Authenticate(response.token)
         this.router.navigate(['space/users'], {replaceUrl: true})
       })
       .catch(error=>{

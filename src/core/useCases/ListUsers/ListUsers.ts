@@ -20,13 +20,13 @@ export default class ListUsers{
           this._totalPages= response.total_pages
 
           const users = response.data as UserApiResponse[]
-          return users.map(user =>(new UserDto({
+          return users.map(user => new UserDto({
             id: user.id,
             email: user.email,
             lastName: user.last_name,
             firstName: user.first_name,
             avatar: user.avatar
-          })));
+          }));
         })
         .catch(error => error)
     }
