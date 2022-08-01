@@ -1,0 +1,30 @@
+#space-header{
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(207deg, rgb(202, 65, 83) 0%, rgba(202, 65, 83) 39%, rgba(2,0,36,1) 100%, rgba(0,212,255,1) 100%);
+  box-shadow: 0px 9px 33px -8px rgba(0,0,0,0.61);
+  -webkit-box-shadow: 0px 9px 33px -8px rgba(0,0,0,0.61);
+  -moz-box-shadow: 0px 9px 33px -8px rgba(0,0,0,0.61);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#space-header a.button{
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 100%;
+  color: #fff;
+  transition: 0.3s ease-in-out;
+}
+#space-header a.button:hover{
+  background-color: rgb(136, 16, 42);
+}
+
+#space-content{
+  position: relative;
+  padding-top: 100px;
+}

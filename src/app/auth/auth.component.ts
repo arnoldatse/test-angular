@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { selectAuth } from './../store/selectors/auth.selector';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { FormValidation, FieldValidations, FieldError } from 'src/core/useCases/FormValidation/FormValidation';
+import { selectAuth } from './../store/selectors/auth.selector';
 import { AuthAction } from '../store/actions/auth.action';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import LoginUserAdapter from 'src/datas/LoginUserAdapter';
 import LoginUser from 'src/core/useCases/LoginUser/LoginUser';
@@ -23,6 +23,7 @@ export class AuthComponent implements OnInit {
     password: new FormControl(''),
   })
 
+  formError: FieldError = false;
   emailError: FieldError = false;
   passwordError: FieldError = false;
 
@@ -47,14 +48,14 @@ export class AuthComponent implements OnInit {
       const registerUserAdapter = new LoginUserAdapter();
       const registerUser = new LoginUser(registerUserAdapter)
 
-      try{
-        const response = await registerUser.Login(this.userForm.value.email!, this.userForm.value.password!)
+      await registerUser.Login(this.userForm.value.email!, this.userForm.value.password!)
+      .then(response=>{
         this.store.dispatch(AuthAction({token: response.token}))
-        this.router.navigate(['users'], {replaceUrl: true})
-      }
-      catch(error){
-        alert(error)
-      }
+        this.router.navigate(['space/users'], {replaceUrl: true})
+      })
+      .catch(error=>{
+        this.formError = error
+      })
     }
   }
 

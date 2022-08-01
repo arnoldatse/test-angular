@@ -24,13 +24,13 @@ export class RegisterComponent implements OnInit {
     passwordConfirmation: new FormControl('')
   })
 
+  formError: FieldError = false;
   emailError: FieldError = false;
   passwordError: FieldError = false;
   passwordConfirmationError: FieldError = false;
 
   constructor(private store: Store, private router: Router) {
     this.auth = store.select(selectAuth)
-    console.log(this.auth)
   }
 
   ngOnInit(): void {
@@ -47,19 +47,20 @@ export class RegisterComponent implements OnInit {
     this.emailError = formValidation.GetFieldError('email')
     this.passwordError = formValidation.GetFieldError('password')
     this.passwordConfirmationError = formValidation.GetFieldError('passwordConfirmation')
-
+    console.log(validations.valid)
     if(validations.valid){
       const registerUserAdapter = new RegisterUserAdapter();
 
       const registerUser = new RegisterUser(registerUserAdapter)
-      try{
-        const response = await registerUser.Register(this.userForm.value.email!, this.userForm.value.password!)
+
+      await registerUser.Register(this.userForm.value.email!, this.userForm.value.password!)
+      .then(response=>{
         this.store.dispatch(AuthAction({token: response.token}))
-        this.router.navigate(['users'], {replaceUrl: true})
-      }
-      catch(error){
-        alert(error)
-      }
+        this.router.navigate(['space/users'], {replaceUrl: true})
+      })
+      .catch(error=>{
+        this.formError = error.error
+      })
     }
   }
 }

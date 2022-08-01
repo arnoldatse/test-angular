@@ -10,6 +10,6 @@ export default class RegisterUser{
   async Login(email:string, password:string){
     const user = new UserLoginRegisterDto({email, password})
 
-    return await this._loginUserRepository.RestLoginUser(user).then(response=>response).catch(error => error)
+    return await this._loginUserRepository.RestLoginUser(user)
   }
 }

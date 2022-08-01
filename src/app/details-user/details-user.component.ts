@@ -34,7 +34,7 @@ export class DetailsUserComponent implements OnInit {
   }
 
   NavigateToUsersList(){
-    this.router.navigate(['/users'])
+    this.router.navigate(['space/users'])
   }
 
 }

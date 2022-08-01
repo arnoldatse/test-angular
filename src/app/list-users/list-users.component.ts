@@ -28,20 +28,17 @@ export class ListUsersComponent implements OnInit {
   }
 
   async GetNextPageUsers(){
-    try{
-      const users = await this.listUsersUseCase.GetNextPageListUsers()
-      if(users){
-        this.users = this.users.concat(users)
-      }
+      await this.listUsersUseCase.GetNextPageListUsers().then(users =>{
+        if(users){
+          this.users = this.users.concat(users)
+        }
+      })
+
 
       this.canFetchNextPage = this.listUsersUseCase.CanFetchNextPage()
-    }
-    catch(error){
-      alert(error)
-    }
   }
 
   NavigateToUserDetails(userId: number){
-    this.router.navigate(['/users/details', userId])
+    this.router.navigate(['space/users/details', userId])
   }
 }

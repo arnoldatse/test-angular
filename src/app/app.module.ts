@@ -13,13 +13,16 @@ import { ListUsersComponent } from './list-users/list-users.component';
 import { DetailsUserComponent } from './details-user/details-user.component';
 import { StoreModule } from '@ngrx/store';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SpaceComponent } from './space/space.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'/auth', pathMatch:'full'},
   {path: 'register', component: RegisterComponent},
   {path: 'auth', component: AuthComponent},
-  {path: 'users', component: ListUsersComponent},
-  {path: 'users/details/:id', component: DetailsUserComponent},
+  {path: 'space', component: SpaceComponent, children: [
+    {path: 'users', component: ListUsersComponent},
+    {path: 'users/details/:id', component: DetailsUserComponent}
+  ]},
   {path: '**', component: NotFoundComponent}
 ];
 
@@ -30,7 +33,8 @@ const routes: Routes = [
     AuthComponent,
     ListUsersComponent,
     DetailsUserComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SpaceComponent
   ],
   imports: [
     BrowserModule,

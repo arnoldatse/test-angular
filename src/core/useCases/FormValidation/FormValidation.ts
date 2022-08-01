@@ -65,6 +65,7 @@ export class FormValidation{
           var confirmField = fields.find(confirmField => confirmField.name == validator.confirm)
 
           if(confirmField?.value !== field.value){
+            valid = false
             errors.push({name:field.name, message:`La confirmation est incorrecte`})
           }
         }

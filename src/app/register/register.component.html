@@ -1,7 +1,8 @@
-<div>
+<div class="container-form-center">
   <div class="center-form-card">
     <h2>Inscription</h2>
     <form [formGroup]="userForm">
+      <div class="form-error" *ngIf="formError">{{ formError }}</div>
       <div class="form-group">
         <label for="email">Email</label>
         <input id="email" type="email" formControlName="email"/>
@@ -22,6 +23,5 @@
       </div>
     </form>
     <a class="simple-button-navigation" routerLink="/auth">Connexion</a>
-    {{ auth | async }}
   </div>
 </div>
