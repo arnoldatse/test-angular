@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
         this.passwordError = false;
         break;
       case 'passwordConfirmation':
-        this.passwordError = false;
+        this.passwordConfirmationError = false;
         break;
     }
   }
