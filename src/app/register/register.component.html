@@ -5,18 +5,18 @@
       <div class="form-error" *ngIf="formError">{{ formError }}</div>
       <div class="form-group">
         <label class="label" for="email">Email</label>
-        <input id="email" type="email" formControlName="email"/>
+        <input (keypress)="OnChangeField('email')" (change)="OnChangeField('email')" id="email" type="email" formControlName="email"/>
         <label *ngIf="emailError" class="field-error-label" for="email">{{ emailError }}</label>
       </div>
       <div class="form-group">
         <label class="label" for="password">Mot de passe</label>
-        <input id="password" type="password" formControlName="password"/>
-        <label *ngIf="passwordError" class="field-error-label" for="email">{{ passwordError }}</label>
+        <input (keypress)="OnChangeField('password')" (change)="OnChangeField('password')" id="password" type="password" formControlName="password"/>
+        <label *ngIf="passwordError" class="field-error-label" for="password">{{ passwordError }}</label>
       </div>
       <div class="form-group">
         <label class="label" for="password-confirmation">Confirmation de mot de passe</label>
-        <input id="password-confirmation" type="password" formControlName="passwordConfirmation"/>
-        <label *ngIf="passwordConfirmationError" class="field-error-label" for="email">{{ passwordConfirmationError }}</label>
+        <input (keypress)="OnChangeField('passwordConfirmation')" (change)="OnChangeField('passwordConfirmation')" id="password-confirmation" type="password" formControlName="passwordConfirmation"/>
+        <label *ngIf="passwordConfirmationError" class="field-error-label" for="password-confirmation">{{ passwordConfirmationError }}</label>
       </div>
       <div class="center-form-card-actions">
         <button (click)="RegisterAction()" type="submit">Inscription</button>

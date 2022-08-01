@@ -32,6 +32,20 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  OnChangeField(field: 'email'|'password'|'passwordConfirmation'){
+    switch(field){
+      case 'email':
+        this.emailError = false;
+        break;
+      case 'password':
+        this.passwordError = false;
+        break;
+      case 'passwordConfirmation':
+        this.passwordError = false;
+        break;
+    }
+  }
+
   async RegisterAction(){
     const formValidation = new FormValidation()
     const validationFields: FieldValidations = [
